@@ -6,6 +6,8 @@ import com.example.instructor.instructor.Entities.Course;
 import com.example.instructor.instructor.Entities.Instructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -24,5 +26,10 @@ public class CourseController {
         }
         instructor.add(course);
         return courseDaoImp.save(course);
+    }
+
+    @GetMapping("/all")
+    public List<Course> getAllCourses(){
+        return courseDaoImp.getAll();
     }
 }
