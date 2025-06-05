@@ -2,12 +2,12 @@ package com.example.instructor.instructor.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "instructor_details")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class InstructorDetails {
     public InstructorDetails() {
     }
@@ -28,6 +28,7 @@ public class InstructorDetails {
     @Column(name = "hobby")
     private String hobby;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "instructorDetails",cascade = CascadeType.ALL)
     private Instructor instructor;
 

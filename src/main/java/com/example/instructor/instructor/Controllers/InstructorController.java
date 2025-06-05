@@ -1,7 +1,8 @@
 package com.example.instructor.instructor.Controllers;
 
 
-import com.example.instructor.instructor.DAO.InstructorDaoImp;
+import com.example.instructor.instructor.DAO.Instructor.InstructorDaoImp;
+import com.example.instructor.instructor.DTOs.GetAllInstructorsDto;
 import com.example.instructor.instructor.Entities.Instructor;
 import com.example.instructor.instructor.Entities.InstructorDetails;
 import org.springframework.data.repository.query.Param;
@@ -30,7 +31,7 @@ public class InstructorController {
     }
 
     @GetMapping("/all")
-    public List<Instructor> getAll(){
+    public List<GetAllInstructorsDto> getAll(){
         return instructorDaoImp.getAll();
     }
 

@@ -1,5 +1,7 @@
-package com.example.instructor.instructor.DAO;
+package com.example.instructor.instructor.DAO.Instructor;
 
+import com.example.instructor.instructor.DTOs.GetAllInstructorsDto;
+import com.example.instructor.instructor.DTOs.GetInstructorDetailsInInstructorDto;
 import com.example.instructor.instructor.Entities.Course;
 import com.example.instructor.instructor.Entities.Instructor;
 import com.example.instructor.instructor.Entities.InstructorDetails;
@@ -43,8 +45,9 @@ public class InstructorDaoImp implements IInstructorDao {
     }
 
     @Override
-    public List<Instructor> getAll() {
-        return entityManager.createQuery("from Instructor",Instructor.class).getResultList();
+    public List<GetAllInstructorsDto> getAll() {
+        List<Instructor>instructors= entityManager.createQuery("from Instructor",Instructor.class).getResultList();
+        return instructors.stream().map(i->new GetAllInstructorsDto(i.getId(),i.getFirst_name(),i.getLast_name(), i.getEmail(),new GetInstructorDetailsInInstructorDto(i.getInstructorDetails().getYoutube_channel(),i.getInstructorDetails().getHobby()))).toList();
     }
 
     @Override
